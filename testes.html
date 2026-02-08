@@ -1,41 +1,28 @@
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; 
-}
-.body {
-            width: 1280px;
-            height: auto;
-            margin: 10px auto;
-            /*border: 1px solid #ddd;*/
-            background: #FFFFFF;
-            
-            overflow: auto;
-        }
-        
-        @media (max-width: 1024px) {
-            .body {
-                width: 100%;
-                height: auto;
-                min-height: 100vh;
-                margin: 0;
-            }
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Responsivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-header{
-    width: 100%;
-    height: 148px;
-}
-/*MENU/ NAV-BAR*/
-/* ESTILOS BASE DO MENU */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* ESTILOS BASE DO MENU */
         .menu {
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
+            padding: 10px 20px;
             color: black;
             background-color: white;
             position: relative;
@@ -47,7 +34,7 @@ header{
 
         .menu div ul li a {
             text-decoration: none;
-            color: #000000;
+            color: #333;
             font-size: 16px;
             transition: color 0.3s ease;
         }
@@ -136,7 +123,7 @@ header{
             color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 20px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             font-weight: 500;
@@ -279,7 +266,7 @@ header{
         /* PC's GRANDES: +1280px */
         @media (min-width: 1280px) {
             .menu {
-                
+                padding: 20px 50px;
                 max-width: 1400px;
                 margin: 0 auto;
             }
@@ -314,4 +301,160 @@ header{
             }
         }
 
-        
+        /* ESTILOS ADICIONAIS PARA CONTEÚDO DE EXEMPLO */
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .content p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breakpoint-info {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #485c11;
+            display: none;
+        }
+
+        /* Mostra o breakpoint atual */
+        @media (max-width: 799px) {
+            .breakpoint-mobile {
+                display: block;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 1279px) {
+            .breakpoint-tablet {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .breakpoint-desktop {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div id="A">
+                <li>Area</li>
+            </div>
+            <div class="centro">
+                <ul>
+                    <li><a href="#benefict">Benefits</a></li>
+                    <li><a href="#specifications">Specifications</a></li>
+                    <li><a href="#how_to">How To</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+                <div>
+                    <button class="learn-more" id="btn1-mobile">
+                        Learn More
+                        <img src="assets/icones/↗.png" alt="Seta">
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <button class="learn-more" id="btn1">
+                    Learn More
+                    <img src="assets/icones/↗.png" alt="Seta">
+                </button>
+            </div>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <div class="menu-overlay" id="menu-overlay"></div>
+    </header>
+
+    <main class="content">
+        <h1>Menu Responsivo</h1>
+
+        <div class="breakpoint-info breakpoint-mobile">
+            📱 Modo MOBILE (1-799px)
+        </div>
+
+        <div class="breakpoint-info breakpoint-tablet">
+            💻 Modo PC MENOR (800-1279px)
+        </div>
+
+        <div class="breakpoint-info breakpoint-desktop">
+            🖥️ Modo PC GRANDE (+1280px)
+        </div>
+
+        <p>Este menu é totalmente responsivo e se adapta a diferentes tamanhos de tela:</p>
+
+        <ul style="text-align: left; max-width: 600px; margin: 0 auto 30px;">
+            <li><strong>Mobile (1-799px):</strong> Menu hamburguer que desliza da direita</li>
+            <li><strong>PC's menores (800-1279px):</strong> Menu compacto com elementos reduzidos</li>
+            <li><strong>PC's grandes (+1280px):</strong> Menu expandido com máximo espaço</li>
+        </ul>
+
+        <p>Redimensione a janela do navegador para ver o menu se adaptar!</p>
+    </main>
+
+    <script>
+        // JavaScript para controlar o menu mobile
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const centroMenu = document.querySelector('.centro');
+            const btn1Mobile = document.getElementById('btn1-mobile');
+
+            // Abrir/fechar menu mobile
+            function toggleMenu() {
+                mobileMenuBtn.classList.toggle('active');
+                centroMenu.classList.toggle('active');
+                menuOverlay.style.display = menuOverlay.style.display === 'block' ? 'none' : 'block';
+            }
+
+            // Event listeners
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
+            btn1Mobile.addEventListener('click', toggleMenu);
+
+            // Fechar menu ao clicar em um link (mobile)
+            const menuLinks = document.querySelectorAll('.centro li a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    if (window.innerWidth <= 799) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Atualizar visibilidade do overlay ao redimensionar
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 799) {
+                    centroMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    menuOverlay.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
